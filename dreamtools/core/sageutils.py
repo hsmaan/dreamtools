@@ -110,7 +110,7 @@ class SynapseClient(synapseclient.Synapse, object):
         if self._connected is False:
             return
 
-        from synapseclient.exceptions import SynapseAuthenticationError
+        from synapseclient.core.exceptions import SynapseAuthenticationError
         try:
             self.login(username, password)
         except Exception as err:
@@ -120,11 +120,6 @@ class SynapseClient(synapseclient.Synapse, object):
                     "in your HOME directory.")
             print("Let us try to login manually (you must have a valid " +
                   "login and password associated with Synapse)\n")
-
-            # use input instead of raw_input (Python3 has only input())
-            try:
-                input = raw_input
-            except NameError: pass
 
             username = str(input("Please enter your Synapse login: "))
             password = str(input("and its password: "))
